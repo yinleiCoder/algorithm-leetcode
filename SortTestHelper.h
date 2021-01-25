@@ -23,6 +23,20 @@ namespace SortTestHelper  {
         return arr;
     }
 
+    int* generatedNearlyOrderedArray(int n, int swapTimes) {
+        int* arr = new int[n];
+        for(int i = 0; i < n; i++) {
+            arr[i] = i;
+        }
+        srand(time(nullptr));
+        for(int i = 0; i < swapTimes; i++) {
+            int posx = rand()%n;
+            int posy = rand()%n;
+            swap(arr[posx], arr[posy]);
+        }
+        return arr;
+    }
+
     template<typename T>
     void printArray(T arr[], int n ) {
         for(int i = 0; i < n; i++) {
@@ -48,6 +62,12 @@ namespace SortTestHelper  {
         clock_t endTime = clock();
         assert(isSorted(arr, n));
         cout << sortName << " : " << double(endTime - startTime) / CLOCKS_PER_SEC << " s. " << endl;
+    }
+
+    int* copyIntArray(int a[], int n){
+        int* arr= new int[n];
+        copy(a, a+n, arr);
+        return arr;
     }
 
 }
